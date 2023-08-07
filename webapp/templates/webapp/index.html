@@ -1,0 +1,29 @@
+{% extends "webapp/base.html" %}
+{% block content %}
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <div class="table-responsive">
+      <h4>Movies List</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Tagline</th>
+          <th scope="col">Cast</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for i in data|slice:":10" %}
+          <th scope="row">{{ i.id }}</th>
+          <td>{{ i.original_title }}</td>
+          <td>{{ i.tagline }}</td>
+          <td>{{ i.cast }}</td>
+          <tr>
+          {% endfor %}
+        </tr>
+    </tbody>
+    </table>
+    </div>
+  </div>
+{% endblock %}

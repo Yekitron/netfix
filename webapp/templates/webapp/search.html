@@ -1,0 +1,42 @@
+{% extends "webapp/base.html" %}
+{% block content %}
+    {% if last_result%}
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <h4>Previously searched:</h4>
+        {% for re in last_result|slice:":5" %}
+        <h6>{{re.original_title}}</h6>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if results %}
+    <div class="d-grid gap-2 col-6 mx-auto">
+    <h3>Search Results: {{ query_vector }}</h3>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Tagline</th>
+            <th scope="col">Cast</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for i in results %}
+            <th scope="row">{{ i.id }}</th>
+            <td>{{ i.original_title }}</td>
+            <td>{{ i.tagline }}</td>
+            <td>{{ i.cast }}</td>
+            <tr>
+            {% endfor %}
+          </tr>
+      </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <h5>No results found...</h5>
+    </div>
+    {% endif %}
+  
+{% endblock %}
